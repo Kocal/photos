@@ -1,8 +1,10 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@hotwired/stimulus': ^3.0.1
+  '@hotwired/stimulus': ^3.0.0
+  '@hotwired/turbo': ^7.0.1
   '@symfony/stimulus-bridge': ^3.1.0
+  '@symfony/ux-turbo': file:vendor/symfony/ux-turbo/Resources/assets
   '@symfony/webpack-encore': ^1.7.0
   autoprefixer: ^10.4.7
   core-js: ^3.0.0
@@ -19,7 +21,9 @@ dependencies:
 
 devDependencies:
   '@hotwired/stimulus': 3.0.1
+  '@hotwired/turbo': 7.1.0
   '@symfony/stimulus-bridge': 3.1.0_@hotwired+stimulus@3.0.1
+  '@symfony/ux-turbo': file:vendor/symfony/ux-turbo/Resources/assets_svmjh2ozlga66uk7ltsv3odk6q
   '@symfony/webpack-encore': 1.8.2
   autoprefixer: 10.4.7_postcss@8.4.13
   core-js: 3.22.4
@@ -1170,6 +1174,10 @@ packages:
 
   /@hotwired/stimulus/3.0.1:
     resolution: {integrity: sha512-oHsJhgY2cip+K2ED7vKUNd2P+BEswVhrCYcJ802DSsblJFv7mPFVk3cQKvm2vHgHeDVdnj7oOKrBbzp1u8D+KA==}
+    dev: true
+
+  /@hotwired/turbo/7.1.0:
+    resolution: {integrity: sha512-Q8kGjqwPqER+CtpQudbH+3Zgs2X4zb6pBAlr6NsKTXadg45pAOvxI9i4QpuHbwSzR2+x87HUm+rot9F/Pe8rxA==}
     dev: true
 
   /@jridgewell/gen-mapping/0.1.1:
@@ -5228,4 +5236,17 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  file:vendor/symfony/ux-turbo/Resources/assets_svmjh2ozlga66uk7ltsv3odk6q:
+    resolution: {directory: vendor/symfony/ux-turbo/Resources/assets, type: directory}
+    id: file:vendor/symfony/ux-turbo/Resources/assets
+    name: '@symfony/ux-turbo'
+    version: 0.1.0
+    peerDependencies:
+      '@hotwired/stimulus': ^3.0.0
+      '@hotwired/turbo': ^7.0.1
+    dependencies:
+      '@hotwired/stimulus': 3.0.1
+      '@hotwired/turbo': 7.1.0
     dev: true
