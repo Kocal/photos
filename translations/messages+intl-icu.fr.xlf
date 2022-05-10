@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="HS9WsUX" resname="navigation.item.homepage">
+        <source>navigation.item.homepage</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="aiZMWB_" resname="navigation.item.my_pictures">
+        <source>navigation.item.my_pictures</source>
+        <target>Mes photos</target>
+      </trans-unit>
+      <trans-unit id="UaD2EDt" resname="navigation.item.my_albums">
+        <source>navigation.item.my_albums</source>
+        <target>Mes albums</target>
+      </trans-unit>
+      <trans-unit id="9faMIpt" resname="navigation.item.login">
+        <source>navigation.item.login</source>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="gSuW16i" resname="navigation.item.signin">
+        <source>navigation.item.signin</source>
+        <target>S'inscrire</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

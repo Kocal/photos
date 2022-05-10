@@ -29,19 +29,18 @@
             </div>
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-center">
-                    <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
-                    <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow">
+                    <a class="text-white font-bold text-2xl" href="{{ path('home') }}">Photos</a>
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
-                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a>
-
-                        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
-
-                        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-
-                        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
+                        {{ component('navbar-item', {
+                            routeName: 'my_pictures',
+                            text: 'navigation.item.my_pictures'|trans
+                        }) }}
+                        {{ component('navbar-item', {
+                            routeName: 'my_albums',
+                            text: 'navigation.item.my_albums'|trans
+                        }) }}
                     </div>
                 </div>
             </div>
@@ -70,6 +69,18 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
+                {% else %}
+                    <div class="flex space-x-4">
+                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                        {{ component('navbar-item', {
+                            routeName: 'app_login',
+                            text: 'navigation.item.login'|trans,
+                        }) }}
+                        {# {{ component('navbar-item', {
+                            routeName: 'app_signin',
+                            text: 'navigation.item.signin'|trans,
+                        }) }} #}
+                    </div>
                 {% endif %}
             </div>
         </div>
@@ -78,14 +89,29 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div data-reveal-target="item" class="sm:hidden hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
+            {{ component('navbar-item', {
+                routeName: 'my_albums',
+                text: 'navigation.item.my_albums'|trans,
+                mobile: true,
+            }) }}
+            {{ component('navbar-item', {
+                routeName: 'my_albums',
+                text: 'navigation.item.my_albums'|trans,
+                mobile: true,
+            }) }}
+        </div>
 
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            {{ component('navbar-item', {
+                routeName: 'app_login',
+                text: 'navigation.item.login'|trans,
+                mobile: true,
+            }) }}
+            {# {{ component('navbar-item', {
+                routeName: 'app_signin',
+                text: 'navigation.item.signin'|trans,
+                mobile: true,
+            }) }} #}
         </div>
     </div>
 </nav>
