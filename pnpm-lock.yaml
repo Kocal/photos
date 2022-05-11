@@ -6,6 +6,7 @@ specifiers:
   '@symfony/stimulus-bridge': ^3.1.0
   '@symfony/ux-turbo': file:vendor/symfony/ux-turbo/Resources/assets
   '@symfony/webpack-encore': ^1.7.0
+  '@tailwindcss/forms': ^0.5.1
   autoprefixer: ^10.4.7
   core-js: ^3.0.0
   postcss: ^8.4.13
@@ -25,6 +26,7 @@ devDependencies:
   '@symfony/stimulus-bridge': 3.1.0_@hotwired+stimulus@3.0.1
   '@symfony/ux-turbo': file:vendor/symfony/ux-turbo/Resources/assets_svmjh2ozlga66uk7ltsv3odk6q
   '@symfony/webpack-encore': 1.8.2
+  '@tailwindcss/forms': 0.5.1_tailwindcss@3.0.24
   autoprefixer: 10.4.7_postcss@8.4.13
   core-js: 3.22.4
   postcss: 8.4.13
@@ -1303,6 +1305,15 @@ packages:
       - uglify-js
       - utf-8-validate
       - webpack-bundle-analyzer
+    dev: true
+
+  /@tailwindcss/forms/0.5.1_tailwindcss@3.0.24:
+    resolution: {integrity: sha512-QSwsFORnC2BAP0lRzQkz1pw+EzIiiPdk4e27vGQjyXkwJPeC7iLIRVndJzf9CJVbcrrIcirb/TfxF3gRTyFEVA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.0.24
     dev: true
 
   /@trysound/sax/0.2.0:
@@ -3435,6 +3446,11 @@ packages:
       schema-utils: 3.1.1
       webpack: 5.72.0_webpack-cli@4.9.2
       webpack-sources: 1.4.3
+    dev: true
+
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: true
 
   /minimalistic-assert/1.0.1:
