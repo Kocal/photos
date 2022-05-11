@@ -33,14 +33,16 @@
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
-                        {{ component('navbar-item', {
-                            routeName: 'my_pictures',
-                            text: 'navigation.item.my_pictures'|trans
-                        }) }}
-                        {{ component('navbar-item', {
-                            routeName: 'my_albums',
-                            text: 'navigation.item.my_albums'|trans
-                        }) }}
+                        {%- if is_granted('ROLE_USER') -%}
+                            {{ component('navbar-item', {
+                                routeName: 'my_pictures',
+                                text: 'navigation.item.my_pictures'|trans
+                            }) }}
+                            {{ component('navbar-item', {
+                                routeName: 'my_albums',
+                                text: 'navigation.item.my_albums'|trans
+                            }) }}
+                        {%- endif -%}
                     </div>
                 </div>
             </div>
@@ -89,16 +91,18 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div data-reveal-target="item" class="sm:hidden hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            {{ component('navbar-item', {
-                routeName: 'my_albums',
-                text: 'navigation.item.my_albums'|trans,
-                mobile: true,
-            }) }}
-            {{ component('navbar-item', {
-                routeName: 'my_albums',
-                text: 'navigation.item.my_albums'|trans,
-                mobile: true,
-            }) }}
+            {%- if is_granted('ROLE_USER') -%}
+                {{ component('navbar-item', {
+                    routeName: 'my_albums',
+                    text: 'navigation.item.my_albums'|trans,
+                    mobile: true,
+                }) }}
+                {{ component('navbar-item', {
+                    routeName: 'my_albums',
+                    text: 'navigation.item.my_albums'|trans,
+                    mobile: true,
+                }) }}
+            {%- endif -%}
         </div>
 
         <div class="px-2 pt-2 pb-3 space-y-1">
