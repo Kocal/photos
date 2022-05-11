@@ -7,6 +7,7 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 class ItemComponent
 {
     public string $routeName;
+    /** @var array<string,mixed>  */
     public array $routeParameters = [];
     public string $text;
 }

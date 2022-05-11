@@ -1,0 +1,23 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - phpstan/symfony-configuration.php
+    - phpstan-baseline.neon
+
+parameters:
+    level: max
+    tmpDir: .cache/phpstan
+    paths:
+        - src
+        - phpstan
+        - tests/phpunit
+    parallel:
+        processTimeout: 120.0
+    inferPrivatePropertyTypeFromConstructor: true
+
+    symfony:
+        console_application_loader: phpstan/console-application.php
+
+    doctrine:
+        objectManagerLoader: phpstan/object-manager.php

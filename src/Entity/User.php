@@ -24,15 +24,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private string $username;
 
+    /**
+     * @var list<string>
+     */
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     #[ORM\Column(type: 'string')]
     private string|null $password = null;
 
+    /**
+     * @var Collection<int, Album>
+     */
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Album::class, orphanRemoval: true)]
     private Collection $albums;
-    
+
+    /**
+     * @var Collection<int, Picture>
+     */
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Picture::class, orphanRemoval: true)]
     private Collection $pictures;
 
@@ -65,6 +74,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @see UserInterface
+     * @return list<string>
      */
     public function getRoles(): array
     {
@@ -72,9 +82,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
-        return array_unique($roles);
+        return array_values(array_unique($roles));
     }
 
+    /**
+     * @param list<string> $roles
+     */
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -100,7 +113,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;

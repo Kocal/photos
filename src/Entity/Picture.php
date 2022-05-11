@@ -31,6 +31,9 @@ class Picture
     #[ORM\Column(type: 'text', nullable: true)]
     private string|null $description = null;
 
+    /**
+     * @var Collection<int, Album>
+     */
     #[ORM\ManyToMany(targetEntity: Album::class, mappedBy: 'pictures')]
     private Collection $albums;
 

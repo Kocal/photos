@@ -18,6 +18,9 @@ class Album
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private Uuid|null $id = null;
 
+    /**
+     * @var Collection<int, Picture>
+     */
     #[ORM\ManyToMany(targetEntity: Picture::class, inversedBy: 'albums')]
     private Collection $pictures;
 
