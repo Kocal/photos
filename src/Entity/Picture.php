@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\EntityBehaviors\Timestampable\Contract\Entity\TimestampableInterface;
+use App\EntityBehaviors\Timestampable\Entity\TimestampableTrait;
 use App\Repository\PictureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,8 +15,10 @@ use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PictureRepository::class)]
-class Picture
+class Picture implements TimestampableInterface
 {
+    use TimestampableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\Column(type: 'uuid', unique: true)]

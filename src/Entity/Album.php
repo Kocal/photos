@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\EntityBehaviors\Timestampable\Contract\Entity\TimestampableInterface;
+use App\EntityBehaviors\Timestampable\Entity\TimestampableTrait;
 use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,8 +12,10 @@ use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
-class Album
+class Album implements TimestampableInterface
 {
+    use TimestampableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\Column(type: 'uuid', unique: true)]
