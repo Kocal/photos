@@ -4,13 +4,14 @@ namespace App\Manager;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserManager
 {
     public function __construct(
         private UserPasswordHasherInterface $passwordHasher,
-        private EntityManager $entityManager
+        private EntityManagerInterface $entityManager
     )
     {
     }

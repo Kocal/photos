@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Manager\UserManager;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,6 +18,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class UserCreateCommand extends Command
 {
+    public function __construct(private UserManager $userManager)
+    {
+        parent::__construct();
+    }
+
     protected function configure()
     {
         $this->setDefinition([
@@ -75,12 +81,11 @@ class UserCreateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $io = new SymfonyStyle($input, $output);
         $username = $input->getArgument('username');
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
 
-        dd($username, $email, $password);
+        $this->userManager->create($username, $email, $password);
 
         return Command::SUCCESS;
     }
