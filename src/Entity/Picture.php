@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Uid\Uuid;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PictureRepository::class)]
 class Picture implements TimestampableInterface
@@ -36,6 +37,7 @@ class Picture implements TimestampableInterface
     private EmbeddedFile|null $image = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(max: 255)]
     private string|null $title = null;
 
     #[ORM\Column(type: 'text', nullable: true)]

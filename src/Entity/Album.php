@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
 class Album implements TimestampableInterface
@@ -33,6 +34,7 @@ class Album implements TimestampableInterface
     private User $author;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(max: 255)]
     private string $title;
 
     #[ORM\Column(type: 'text', nullable: true)]

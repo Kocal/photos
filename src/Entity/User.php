@@ -9,12 +9,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
+#[UniqueEntity(fields: ["username"])]
+#[UniqueEntity(fields: ["email"])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, TimestampableInterface
 {
     use TimestampableTrait;
@@ -25,8 +29,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private Uuid|null $id = null;
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
+    #[Assert\NotBlank]
     private string $username;
+
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 180)]
+    #[Assert\Email(mode: 'html5')]
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    private string $email;
 
     /**
      * @var list<string>
@@ -49,9 +60,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Picture::class, orphanRemoval: true)]
     private Collection $pictures;
 
-    public function __construct(string $username)
+    public function __construct(string $username, string $email)
     {
         $this->username = $username;
+        $this->email = $email;
         $this->albums = new ArrayCollection();
         $this->pictures = new ArrayCollection();
     }
