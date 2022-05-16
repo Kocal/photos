@@ -60,6 +60,9 @@ Encore
     // enables PostCSS support
     .enablePostCssLoader()
 
+    // uncomment if you use Vue
+    .enableVueLoader()
+
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 

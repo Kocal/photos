@@ -7,7 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Uid\Uuid;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PictureRepository::class)]
 class Picture
@@ -22,8 +25,11 @@ class Picture
     #[ORM\JoinColumn(nullable: false)]
     private User $author;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $filename;
+    #[Vich\UploadableField(mapping:"product_image", fileNameProperty:"image.name", size:"image.size", mimeType:"image.mimeType", originalName:"image.originalName", dimensions:"image.dimensions")]
+    private File|null $imageFile = null;
+
+    #[ORM\Embedded(EmbeddedFile::class)]
+    private EmbeddedFile|null $image = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private string|null $title = null;
@@ -37,10 +43,9 @@ class Picture
     #[ORM\ManyToMany(targetEntity: Album::class, mappedBy: 'pictures')]
     private Collection $albums;
 
-    public function __construct(User $author, string $filename)
+    public function __construct(User $author)
     {
         $this->author = $author;
-        $this->filename = $filename;
         $this->albums = new ArrayCollection();
     }
 
@@ -54,10 +59,27 @@ class Picture
         return $this->author;
     }
 
-    public function getFilename(): ?string
+    public function getImageFile(): ?File
     {
-        return $this->filename;
+        return $this->imageFile;
     }
+
+    public function setImageFile(?File $imageFile): void
+    {
+        $this->imageFile = $imageFile;
+        // TODO: set updated at
+    }
+
+    public function getImage(): ?EmbeddedFile
+    {
+        return $this->image;
+    }
+
+    public function setImage(?EmbeddedFile $image): void
+    {
+        $this->image = $image;
+    }
+
 
     public function getTitle(): ?string
     {

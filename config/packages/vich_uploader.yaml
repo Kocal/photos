@@ -1,0 +1,15 @@
+vich_uploader:
+    db_driver: orm
+    storage: flysystem
+    metadata:
+        type: attribute
+    mappings:
+        product_image:
+            uri_prefix: /uploads
+            upload_destination: uploads.storage # Use the name you defined for your storage here
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+    #mappings:
+    #    products:
+    #        uri_prefix: /images/products
+    #        upload_destination: '%kernel.project_dir%/public/images/products'
