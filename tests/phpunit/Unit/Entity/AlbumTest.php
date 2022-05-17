@@ -11,7 +11,7 @@ class AlbumTest extends TestCase
 {
     public function testCreation(): void
     {
-        $album = new Album('My album', $author = new User('kocal'));
+        $album = new Album('My album', $author = new User('kocal', 'kocal@example.com'));
 
         static::assertNull($album->getId());
         static::assertSame('My album', $album->getTitle());
@@ -22,7 +22,7 @@ class AlbumTest extends TestCase
 
     public function testDescription(): void
     {
-        $album = new Album('My album', $author = new User('kocal'));
+        $album = new Album('My album', $author = new User('kocal', 'kocal@example.com'));
 
         static::assertNull($album->getDescription());
 
@@ -33,7 +33,7 @@ class AlbumTest extends TestCase
 
     public function testAddPicture(): void
     {
-        $album = new Album('My album', $author = new User('kocal'));
+        $album = new Album('My album', $author = new User('kocal', 'kocal@example.com'));
 
         static::assertTrue($album->getPictures()->isEmpty());
 

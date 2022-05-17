@@ -9,7 +9,7 @@ class UserTest extends TestCase
 {
     public function testCreation(): void
     {
-        $user = new User('kocal');
+        $user = new User('kocal', 'kocal@example.com');
 
         static::assertNull($user->getId());
         static::assertSame('kocal', $user->getUsername());
@@ -21,7 +21,7 @@ class UserTest extends TestCase
 
     public function testGetRoles(): void
     {
-        $user = new User('kocal');
+        $user = new User('kocal', 'kocal@example.com');
 
         static::assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -32,7 +32,7 @@ class UserTest extends TestCase
 
     public function setPassword(): void
     {
-        $user = new User('kocal');
+        $user = new User('kocal', 'kocal@example.com');
 
         static::assertSame('', $user->getPassword());
 

@@ -73,7 +73,7 @@ class Picture implements TimestampableInterface
     public function setImageFile(?File $imageFile): void
     {
         $this->imageFile = $imageFile;
-        // TODO: set updated at
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getImage(): ?EmbeddedFile
