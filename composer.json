@@ -11,23 +11,23 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.12",
         "league/flysystem-bundle": "^2.2",
-        "symfony/console": "6.0.*",
-        "symfony/dotenv": "6.0.*",
+        "symfony/asset": "6.3.*",
+        "symfony/console": "*",
+        "symfony/dotenv": "*",
         "symfony/flex": "^2",
-        "symfony/framework-bundle": "6.0.*",
+        "symfony/framework-bundle": "*",
         "symfony/maker-bundle": "^1.41",
-        "symfony/proxy-manager-bridge": "6.0.*",
-        "symfony/runtime": "6.0.*",
-        "symfony/security-bundle": "6.0.*",
-        "symfony/translation": "6.0.*",
-        "symfony/twig-bundle": "6.0.*",
-        "symfony/uid": "6.0.*",
-        "symfony/ux-turbo": "^2.1",
+        "symfony/proxy-manager-bridge": "*",
+        "symfony/runtime": "*",
+        "symfony/security-bundle": "*",
+        "symfony/translation": "*",
+        "symfony/twig-bundle": "*",
+        "symfony/uid": "*",
         "symfony/ux-twig-component": "^2.1",
-        "symfony/validator": "6.0.*",
-        "symfony/web-link": "6.0.*",
-        "symfony/webpack-encore-bundle": "^1.14",
-        "symfony/yaml": "6.0.*",
+        "symfony/validator": "*",
+        "symfony/web-link": "*",
+        "symfony/yaml": "*",
+        "symfonycasts/tailwind-bundle": "^0.1.5",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^1.19"
@@ -38,11 +38,11 @@
         "phpstan/phpstan-phpunit": "^1.1",
         "phpstan/phpstan-symfony": "^1.1",
         "phpunit/phpunit": "^9.5",
-        "symfony/browser-kit": "6.0.*",
-        "symfony/css-selector": "6.0.*",
+        "symfony/browser-kit": "*",
+        "symfony/css-selector": "*",
         "symfony/phpunit-bridge": "^6.0",
-        "symfony/stopwatch": "6.0.*",
-        "symfony/web-profiler-bundle": "6.0.*"
+        "symfony/stopwatch": "*",
+        "symfony/web-profiler-bundle": "*"
     },
     "config": {
         "allow-plugins": {
@@ -77,14 +77,22 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "tailwind:build": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "deploy": [
+            "@deploy.build-assets"
+        ],
+        "deploy.build-assets": {
+            "tailwind:build": "symfony-cmd",
+            "asset-map:compile --clean": "symfony-cmd"
+        }
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -92,7 +100,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.0.*"
+            "require": "6.3.*"
         }
     }
 }
