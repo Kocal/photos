@@ -9,8 +9,9 @@ runtime:
         - sodium
         - ctype
         - iconv
+        - pdo
         - pgsql
-        
+
 
 dependencies:
     php:
